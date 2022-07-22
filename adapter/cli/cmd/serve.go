@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"github.com/booscaaa/go-api-test-unico/adapter/http/rest"
+	"github.com/booscaaa/go-api-test-unico/adapter/postgres"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -15,6 +16,7 @@ var serveCmd = &cobra.Command{
 	Use:   "serve",
 	Short: "Initialize the REST api",
 	Run: func(cmd *cobra.Command, args []string) {
+		postgres.RunMigrations()
 		configHTTPServerPort := viper.GetString("server.http.port")
 		rest.InitRest(configHTTPServerPort)
 	},
