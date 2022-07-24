@@ -1,0 +1,349 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "UNICO API",
+        "contact": {
+            "name": "Vinícius Boscardin",
+            "email": "boscardinvinicius@gmail.com"
+        }
+    },
+    "basePath": "/",
+    "paths": {
+        "/free-market": {
+            "get": {
+                "description": "Fetch free markets with server pagination",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "free-market"
+                ],
+                "summary": "Fetch free markets with server pagination",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "column_name1,column_name2",
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "true,false",
+                        "name": "descending",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "1",
+                        "name": "page",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "10",
+                        "name": "itemsPerPage",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "string word, can be empty",
+                        "name": "search",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.PaginationResponseBody"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create free market",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "free-market"
+                ],
+                "summary": "Create free market",
+                "parameters": [
+                    {
+                        "description": "freeMarket",
+                        "name": "freeMarket",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.FreeMarketRequestBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/domain.FreeMarket"
+                        }
+                    }
+                }
+            }
+        },
+        "/free-market/{id}": {
+            "get": {
+                "description": "Get free market by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "free-market"
+                ],
+                "summary": "Get free market by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "1",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/domain.FreeMarket"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update free market by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "free-market"
+                ],
+                "summary": "Update free market by id",
+                "parameters": [
+                    {
+                        "description": "freeMarket",
+                        "name": "freeMarket",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.FreeMarketRequestBody"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "1",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/domain.FreeMarket"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete free market by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "free-market"
+                ],
+                "summary": "Delete free market by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "1",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/domain.FreeMarket"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "domain.FreeMarket": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "addressNumber": {
+                    "type": "string"
+                },
+                "areaP": {
+                    "type": "string"
+                },
+                "district": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                },
+                "marketName": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "regionCode": {
+                    "type": "integer"
+                },
+                "regionEight": {
+                    "type": "string"
+                },
+                "regionFive": {
+                    "type": "string"
+                },
+                "register": {
+                    "type": "string"
+                },
+                "setCens": {
+                    "type": "string"
+                },
+                "subprefecture": {
+                    "type": "string"
+                },
+                "subprefectureCode": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.FreeMarketRequestBody": {
+            "type": "object",
+            "required": [
+                "address",
+                "areaP",
+                "district",
+                "latitude",
+                "longitude",
+                "marketName",
+                "region",
+                "regionCode",
+                "regionEight",
+                "regionFive",
+                "register",
+                "setCens",
+                "subprefecture",
+                "subprefectureCode"
+            ],
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "maxLength": 34
+                },
+                "addressNumber": {
+                    "type": "string"
+                },
+                "areaP": {
+                    "type": "string",
+                    "maxLength": 13
+                },
+                "district": {
+                    "type": "string",
+                    "maxLength": 20
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                },
+                "marketName": {
+                    "type": "string",
+                    "maxLength": 30
+                },
+                "reference": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string",
+                    "maxLength": 18
+                },
+                "regionCode": {
+                    "type": "integer"
+                },
+                "regionEight": {
+                    "type": "string",
+                    "maxLength": 7
+                },
+                "regionFive": {
+                    "type": "string",
+                    "maxLength": 6
+                },
+                "register": {
+                    "type": "string",
+                    "maxLength": 6
+                },
+                "setCens": {
+                    "type": "string",
+                    "maxLength": 15
+                },
+                "subprefecture": {
+                    "type": "string",
+                    "maxLength": 25
+                },
+                "subprefectureCode": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.PaginationResponseBody": {
+            "type": "object",
+            "properties": {
+                "items": {},
+                "total": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

@@ -7,7 +7,7 @@ tmp_dir = "dev"
 
 [build]
 # Just plain old shell command. You could use `make` as well.
-cmd = "go mod tidy && go test -coverprofile tests/cover.out ./... -v && go tool cover -html=tests/cover.out -o tests/cover.html && go build -o ./dev/main ./adapter/cli"
+cmd = "go mod tidy && /go/bin/swag init -d adapter/cli --parseDependency --parseInternal --parseDepth 3 -o adapter/http/rest/docs && go test -coverprofile tests/cover.out ./... && go tool cover -html=tests/cover.out -o tests/cover.html && go build -o ./dev/main ./adapter/cli"
 # Binary file yields from `cmd`.
 bin = "dev/main"
 # Customize binary.
@@ -15,7 +15,7 @@ full_bin = "APP_ENV=dev APP_USER=air ./dev/main serve"
 # Watch these filename extensions.
 include_ext = ["go", "tpl", "tmpl", "html"]
 # Ignore these filename extensions or directories.
-exclude_dir = ["assets", "dev", "vendor", "frontend/node_modules", "tests"]
+exclude_dir = ["assets", "dev", "vendor", "frontend/node_modules", "tests", "adapter/http/rest/docs"]
 # Watch these directories if you specified.
 include_dir = []
 # Exclude files.

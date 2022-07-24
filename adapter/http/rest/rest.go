@@ -4,12 +4,19 @@ import (
 	"github.com/booscaaa/go-api-test-unico/di"
 	"github.com/gin-gonic/gin"
 	"github.com/jmoiron/sqlx"
+
+	docs "github.com/booscaaa/go-api-test-unico/adapter/http/rest/docs"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func InitRest(httpPort string, database *sqlx.DB) {
+	docs.SwaggerInfo.BasePath = "/"
 	freeMarketService := di.ConfigFreeMarketDi(database)
 
 	router := gin.Default()
+
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	router.POST("/free-market", freeMarketService.Create)
 	router.GET("/free-market", freeMarketService.Fetch)

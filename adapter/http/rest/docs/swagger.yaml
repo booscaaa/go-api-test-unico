@@ -1,0 +1,238 @@
+basePath: /
+definitions:
+  domain.FreeMarket:
+    properties:
+      address:
+        type: string
+      addressNumber:
+        type: string
+      areaP:
+        type: string
+      district:
+        type: string
+      id:
+        type: integer
+      latitude:
+        type: number
+      longitude:
+        type: number
+      marketName:
+        type: string
+      reference:
+        type: string
+      region:
+        type: string
+      regionCode:
+        type: integer
+      regionEight:
+        type: string
+      regionFive:
+        type: string
+      register:
+        type: string
+      setCens:
+        type: string
+      subprefecture:
+        type: string
+      subprefectureCode:
+        type: integer
+    type: object
+  dto.FreeMarketRequestBody:
+    properties:
+      address:
+        maxLength: 34
+        type: string
+      addressNumber:
+        type: string
+      areaP:
+        maxLength: 13
+        type: string
+      district:
+        maxLength: 20
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      marketName:
+        maxLength: 30
+        type: string
+      reference:
+        type: string
+      region:
+        maxLength: 18
+        type: string
+      regionCode:
+        type: integer
+      regionEight:
+        maxLength: 7
+        type: string
+      regionFive:
+        maxLength: 6
+        type: string
+      register:
+        maxLength: 6
+        type: string
+      setCens:
+        maxLength: 15
+        type: string
+      subprefecture:
+        maxLength: 25
+        type: string
+      subprefectureCode:
+        type: integer
+    required:
+    - address
+    - areaP
+    - district
+    - latitude
+    - longitude
+    - marketName
+    - region
+    - regionCode
+    - regionEight
+    - regionFive
+    - register
+    - setCens
+    - subprefecture
+    - subprefectureCode
+    type: object
+  dto.PaginationResponseBody:
+    properties:
+      items: {}
+      total:
+        type: integer
+    type: object
+info:
+  contact:
+    email: boscardinvinicius@gmail.com
+    name: Vinícius Boscardin
+  title: UNICO API
+paths:
+  /free-market:
+    get:
+      consumes:
+      - application/json
+      description: Fetch free markets with server pagination
+      parameters:
+      - description: column_name1,column_name2
+        in: query
+        name: sort
+        type: string
+      - description: true,false
+        in: query
+        name: descending
+        type: string
+      - description: "1"
+        in: query
+        name: page
+        required: true
+        type: integer
+      - description: "10"
+        in: query
+        name: itemsPerPage
+        required: true
+        type: integer
+      - description: string word, can be empty
+        in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.PaginationResponseBody'
+      summary: Fetch free markets with server pagination
+      tags:
+      - free-market
+    post:
+      consumes:
+      - application/json
+      description: Create free market
+      parameters:
+      - description: freeMarket
+        in: body
+        name: freeMarket
+        required: true
+        schema:
+          $ref: '#/definitions/dto.FreeMarketRequestBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.FreeMarket'
+      summary: Create free market
+      tags:
+      - free-market
+  /free-market/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete free market by id
+      parameters:
+      - description: "1"
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.FreeMarket'
+      summary: Delete free market by id
+      tags:
+      - free-market
+    get:
+      consumes:
+      - application/json
+      description: Get free market by id
+      parameters:
+      - description: "1"
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.FreeMarket'
+      summary: Get free market by id
+      tags:
+      - free-market
+    put:
+      consumes:
+      - application/json
+      description: Update free market by id
+      parameters:
+      - description: freeMarket
+        in: body
+        name: freeMarket
+        required: true
+        schema:
+          $ref: '#/definitions/dto.FreeMarketRequestBody'
+      - description: "1"
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.FreeMarket'
+      summary: Update free market by id
+      tags:
+      - free-market
+swagger: "2.0"

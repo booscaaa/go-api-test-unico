@@ -8,6 +8,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Create goDoc
+// @Summary Create free market
+// @Description Create free market
+// @Tags free-market
+// @Accept  json
+// @Produce  json
+// @Param freeMarket body dto.FreeMarketRequestBody true "freeMarket"
+// @Success 200 {object} domain.FreeMarket
+// @Router /free-market [post]
 func (service service) Create(c *gin.Context) {
 	freeMarketRequest, err := dto.FromJSONFreeMarketRequestBody(c.Request.Body, &service.validator)
 	if err != nil {
