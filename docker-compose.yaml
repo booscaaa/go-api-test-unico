@@ -12,6 +12,7 @@ services:
     volumes:
       - ./:/api
       - ./scripts:/scripts
+      - ./tests:/api/tests
     networks:
       - api-unico
 

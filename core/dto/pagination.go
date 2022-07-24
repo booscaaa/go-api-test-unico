@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// PaginationRequestParms is an representation query string params to filter and paginate products
+// PaginationRequestParms is an representation query string params to filter and paginate data
 type PaginationRequestParms struct {
 	Search       string   `json:"search"`
 	Descending   []string `json:"descending"`
@@ -16,6 +16,7 @@ type PaginationRequestParms struct {
 	Status       int      `json:"status"`
 }
 
+// PaginationResponseBody is an representation to paginated data
 type PaginationResponseBody struct {
 	Items interface{} `json:"items"`
 	Total int64       `json:"total"`

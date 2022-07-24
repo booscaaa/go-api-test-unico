@@ -6,23 +6,23 @@ import (
 )
 
 type FreeMarket struct {
-	ID                int64   `json:"id"`
-	Latitude          float64 `json:"latitude"`
-	Longitude         float64 `json:"longitude"`
-	SetCens           string  `json:"setCens"`
-	Areap             string  `json:"areaP"`
-	RegionCode        int64   `json:"regionCode"`
-	Region            string  `json:"region"`
-	SubprefectureCode int64   `json:"subprefectureCode"`
-	Subprefecture     string  `json:"subprefecture"`
-	RegionFive        string  `json:"regionFive"`
-	RegionEight       string  `json:"regionEight"`
-	MarketName        string  `json:"marketName"`
-	Register          string  `json:"register"`
-	Adress            string  `json:"adress"`
-	AdressNumber      *string `json:"adressNumber"`
-	District          string  `json:"district"`
-	Reference         *string `json:"reference"`
+	ID                int64   `json:"id"                db:"id"`
+	Latitude          float64 `json:"latitude"          db:"latitude"`
+	Longitude         float64 `json:"longitude"         db:"longitude"`
+	SetCens           string  `json:"setCens"           db:"set_cens"`
+	Areap             string  `json:"areaP"             db:"areap"`
+	RegionCode        int64   `json:"regionCode"        db:"region_code"`
+	Region            string  `json:"region"            db:"region"`
+	SubprefectureCode int64   `json:"subprefectureCode" db:"subprefecture_code"`
+	Subprefecture     string  `json:"subprefecture"     db:"subprefecture"`
+	RegionFive        string  `json:"regionFive"        db:"region_five"`
+	RegionEight       string  `json:"regionEight"       db:"region_eight"`
+	MarketName        string  `json:"marketName"        db:"market_name"`
+	Register          string  `json:"register"          db:"register"`
+	Address           string  `json:"address"           db:"address"`
+	AddressNumber     *string `json:"addressNumber"     db:"address_number"`
+	District          string  `json:"district"          db:"disctrict"`
+	Reference         *string `json:"reference"         db:"reference"`
 }
 
 // FreeMarketService is a contract of http adapter layer
