@@ -17,6 +17,11 @@ func init() {
 	}
 }
 
+// @title UNICO API
+// @description
+// @contact.name Vinícius Boscardin
+// @contact.email boscardinvinicius@gmail.com
+// @BasePath /
 func main() {
 	cmd.Execute()
 }

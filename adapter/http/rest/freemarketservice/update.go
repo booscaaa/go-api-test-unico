@@ -9,6 +9,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Update goDoc
+// @Summary Update free market by id
+// @Description Update free market by id
+// @Tags free-market
+// @Accept  json
+// @Produce  json
+// @Param freeMarket body dto.FreeMarketRequestBody true "freeMarket"
+// @Param id path int true "1"
+// @Success 200 {object} domain.FreeMarket
+// @Router /free-market/{id} [put]
 func (service service) Update(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 

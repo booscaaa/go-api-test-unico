@@ -19,20 +19,14 @@ import (
 	"github.com/golang/mock/gomock"
 )
 
-func setupUpdate(t *testing.T) (dto.FreeMarketRequestBody, domain.FreeMarket, *gomock.Controller) {
-	fakeFreeMarketRequest := dto.FreeMarketRequestBody{}
-	fakeFreeMarket := domain.FreeMarket{}
-	faker.FakeData(&fakeFreeMarketRequest)
-	faker.FakeData(&fakeFreeMarket)
-
-	mockCtrl := gomock.NewController(t)
-
-	return fakeFreeMarketRequest, fakeFreeMarket, mockCtrl
-}
-
 func TestUpdate(t *testing.T) {
 	t.Run("should update a free market with status code 200", func(t *testing.T) {
-		fakeFreeMarketRequest, fakeFreeMarket, mock := setupUpdate(t)
+		fakeFreeMarketRequest := dto.FreeMarketRequestBody{}
+		fakeFreeMarket := domain.FreeMarket{}
+		faker.FakeData(&fakeFreeMarketRequest)
+		faker.FakeData(&fakeFreeMarket)
+
+		mock := gomock.NewController(t)
 		defer mock.Finish()
 
 		ctx := context.Background()
@@ -63,7 +57,12 @@ func TestUpdate(t *testing.T) {
 	})
 
 	t.Run("should return status code 500 when json is incorrect", func(t *testing.T) {
-		_, _, mock := setupUpdate(t)
+		fakeFreeMarketRequest := dto.FreeMarketRequestBody{}
+		fakeFreeMarket := domain.FreeMarket{}
+		faker.FakeData(&fakeFreeMarketRequest)
+		faker.FakeData(&fakeFreeMarket)
+
+		mock := gomock.NewController(t)
 		defer mock.Finish()
 
 		validator := util.NewValidator()
@@ -89,7 +88,12 @@ func TestUpdate(t *testing.T) {
 	})
 
 	t.Run("should return status code 422 when json is missing requered key", func(t *testing.T) {
-		_, _, mock := setupUpdate(t)
+		fakeFreeMarketRequest := dto.FreeMarketRequestBody{}
+		fakeFreeMarket := domain.FreeMarket{}
+		faker.FakeData(&fakeFreeMarketRequest)
+		faker.FakeData(&fakeFreeMarket)
+
+		mock := gomock.NewController(t)
 		defer mock.Finish()
 
 		validator := util.NewValidator()
@@ -115,7 +119,12 @@ func TestUpdate(t *testing.T) {
 	})
 
 	t.Run("should return error on usecase exeption", func(t *testing.T) {
-		fakeFreeMarketRequest, _, mock := setupUpdate(t)
+		fakeFreeMarketRequest := dto.FreeMarketRequestBody{}
+		fakeFreeMarket := domain.FreeMarket{}
+		faker.FakeData(&fakeFreeMarketRequest)
+		faker.FakeData(&fakeFreeMarket)
+
+		mock := gomock.NewController(t)
 		defer mock.Finish()
 
 		ctx := context.Background()
@@ -146,7 +155,12 @@ func TestUpdate(t *testing.T) {
 	})
 
 	t.Run("should return status code 500 when id not exists on request", func(t *testing.T) {
-		_, _, mock := setupUpdate(t)
+		fakeFreeMarketRequest := dto.FreeMarketRequestBody{}
+		fakeFreeMarket := domain.FreeMarket{}
+		faker.FakeData(&fakeFreeMarketRequest)
+		faker.FakeData(&fakeFreeMarket)
+
+		mock := gomock.NewController(t)
 		defer mock.Finish()
 
 		validator := util.NewValidator()
