@@ -12,8 +12,8 @@ CREATE TABLE free_market (
     region_eight VARCHAR(7) NOT NULL,
     market_name VARCHAR(30) NOT NULL,
     register VARCHAR(6) NOT NULL,
-    adress VARCHAR(34) NOT NULL,
-    adress_number VARCHAR(5),
+    address VARCHAR(34) NOT NULL,
+    address_number VARCHAR(5),
     district VARCHAR(20) NOT NULL,
     reference VARCHAR(24)
 );
