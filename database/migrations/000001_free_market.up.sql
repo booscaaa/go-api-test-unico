@@ -15,5 +15,5 @@ CREATE TABLE free_market (
     address VARCHAR(34) NOT NULL,
     address_number VARCHAR(5),
     district VARCHAR(20) NOT NULL,
-    reference VARCHAR(24)
+    reference VARCHAR(34)
 );
