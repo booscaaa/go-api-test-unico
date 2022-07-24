@@ -24,12 +24,12 @@ func TestUpdate(t *testing.T) {
 		ctx := context.Background()
 		mockCtrl := gomock.NewController(t)
 		defer mockCtrl.Finish()
-		mockProductRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
-		mockProductRepository.EXPECT().
+		mockFreeMarketRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
+		mockFreeMarketRepository.EXPECT().
 			Update(ctx, freeMarketResponse.ID, &fakeFreeMarketRequest).
 			Return(&freeMarketResponse, nil)
 
-		sut := freemarketusecase.New(mockProductRepository)
+		sut := freemarketusecase.New(mockFreeMarketRepository)
 		freeMarket, err := sut.Update(ctx, freeMarketResponse.ID, &fakeFreeMarketRequest)
 
 		assert.Nil(t, err)
@@ -61,12 +61,12 @@ func TestUpdate(t *testing.T) {
 		ctx := context.Background()
 		mockCtrl := gomock.NewController(t)
 		defer mockCtrl.Finish()
-		mockProductRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
-		mockProductRepository.EXPECT().
+		mockFreeMarketRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
+		mockFreeMarketRepository.EXPECT().
 			Update(ctx, freeMarketResponse.ID, &fakeFreeMarketRequest).
 			Return(nil, fmt.Errorf("ANY ERROR"))
 
-		sut := freemarketusecase.New(mockProductRepository)
+		sut := freemarketusecase.New(mockFreeMarketRepository)
 		freeMarket, err := sut.Update(ctx, freeMarketResponse.ID, &fakeFreeMarketRequest)
 
 		assert.NotNil(t, err)

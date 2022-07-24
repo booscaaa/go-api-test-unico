@@ -24,12 +24,12 @@ func TestDelete(t *testing.T) {
 		ctx := context.Background()
 		mockCtrl := gomock.NewController(t)
 		defer mockCtrl.Finish()
-		mockProductRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
-		mockProductRepository.EXPECT().
+		mockFreeMarketRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
+		mockFreeMarketRepository.EXPECT().
 			Delete(ctx, freeMarketResponse.ID).
 			Return(&freeMarketResponse, nil)
 
-		sut := freemarketusecase.New(mockProductRepository)
+		sut := freemarketusecase.New(mockFreeMarketRepository)
 		freeMarket, err := sut.Delete(ctx, freeMarketResponse.ID)
 
 		assert.Nil(t, err)
@@ -61,12 +61,12 @@ func TestDelete(t *testing.T) {
 		ctx := context.Background()
 		mockCtrl := gomock.NewController(t)
 		defer mockCtrl.Finish()
-		mockProductRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
-		mockProductRepository.EXPECT().
+		mockFreeMarketRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
+		mockFreeMarketRepository.EXPECT().
 			Delete(ctx, freeMarketResponse.ID).
 			Return(nil, fmt.Errorf("ANY ERROR"))
 
-		sut := freemarketusecase.New(mockProductRepository)
+		sut := freemarketusecase.New(mockFreeMarketRepository)
 		freeMarket, err := sut.Delete(ctx, freeMarketResponse.ID)
 
 		assert.NotNil(t, err)
