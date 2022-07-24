@@ -38,11 +38,11 @@ type FreeMarketHTTPService interface {
 
 // FreeMarketUseCase is a contract of usecase ruler layer
 type FreeMarketUseCase interface {
-	Create(*dto.FreeMarketRequestBody) (*FreeMarket, error)
-	Update(int, *dto.FreeMarketRequestBody) (*FreeMarket, error)
-	Delete(int) (*FreeMarket, error)
-	GetByID(int) (*FreeMarket, error)
-	Fetch(*dto.PaginationRequestParams) (*dto.PaginationResponseBody, error)
+	Create(context.Context, *dto.FreeMarketRequestBody) (*FreeMarket, error)
+	Update(context.Context, int64, *dto.FreeMarketRequestBody) (*FreeMarket, error)
+	Delete(context.Context, int64) (*FreeMarket, error)
+	GetByID(context.Context, int64) (*FreeMarket, error)
+	Fetch(context.Context, *dto.PaginationRequestParams) (*dto.PaginationResponseBody, error)
 }
 
 // FreeMarketRepository is a contract of database connection adapter layer

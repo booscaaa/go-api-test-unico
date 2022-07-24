@@ -10,6 +10,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.0
 	github.com/go-playground/validator/v10 v10.10.0
 	github.com/golang-migrate/migrate/v4 v4.15.2
+	github.com/golang/mock v1.6.0
 	github.com/jmoiron/sqlx v1.3.1
 	github.com/lib/pq v1.10.6
 	github.com/spf13/cobra v1.5.0
