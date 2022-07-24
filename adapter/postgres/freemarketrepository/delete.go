@@ -13,7 +13,7 @@ func (repository repository) Delete(
 	freeMarket := domain.FreeMarket{}
 
 	err := repository.database.QueryRowxContext(
-		ctx, "DELETE FROM  free_market WHERE id = $1;", freeMarketID,
+		ctx, "DELETE FROM  free_market WHERE id = $1 returning *;", freeMarketID,
 	).StructScan(&freeMarket)
 
 	if err != nil {

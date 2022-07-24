@@ -33,7 +33,7 @@ func (repository repository) Update(
 			SET address_number = $14,
 			SET district = $15,
 			SET reference = $16
-		WHERE id = $17;`,
+		WHERE id = $17 returning *;`,
 		freeMarketRequest.Latitude,
 		freeMarketRequest.Longitude,
 		freeMarketRequest.SetCens,

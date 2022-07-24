@@ -21,7 +21,7 @@ func (repository repository) Fetch(
 		Page(requestParams.Page).
 		Desc(requestParams.Descending).
 		RowsPerPage(requestParams.ItemsPerPage).
-		SearchBy(requestParams.Search).
+		SearchBy(requestParams.Search, "region", "region_five", "market_name", "district").
 		Sort(requestParams.Sort)
 
 	query, queryCount := pagin.Select()
