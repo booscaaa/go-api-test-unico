@@ -27,7 +27,7 @@ type FreeMarket struct {
 	Reference         *string `json:"reference"         db:"reference"`
 }
 
-// FreeMarketService is a contract of http adapter layer
+// FreeMarketHTTPService is a contract of http adapter layer
 type FreeMarketHTTPService interface {
 	Create(*gin.Context)
 	Update(*gin.Context)

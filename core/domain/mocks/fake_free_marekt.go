@@ -135,6 +135,66 @@ func (mr *MockFreeMarketUseCaseMockRecorder) Create(arg0, arg1 interface{}) *gom
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockFreeMarketUseCase)(nil).Create), arg0, arg1)
 }
 
+// Delete mocks base method.
+func (m *MockFreeMarketUseCase) Delete(arg0 context.Context, arg1 int64) (*domain.FreeMarket, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Delete", arg0, arg1)
+	ret0, _ := ret[0].(*domain.FreeMarket)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Delete indicates an expected call of Delete.
+func (mr *MockFreeMarketUseCaseMockRecorder) Delete(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockFreeMarketUseCase)(nil).Delete), arg0, arg1)
+}
+
+// Fetch mocks base method.
+func (m *MockFreeMarketUseCase) Fetch(arg0 context.Context, arg1 *dto.PaginationRequestParams) (*dto.PaginationResponseBody, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Fetch", arg0, arg1)
+	ret0, _ := ret[0].(*dto.PaginationResponseBody)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Fetch indicates an expected call of Fetch.
+func (mr *MockFreeMarketUseCaseMockRecorder) Fetch(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Fetch", reflect.TypeOf((*MockFreeMarketUseCase)(nil).Fetch), arg0, arg1)
+}
+
+// GetByID mocks base method.
+func (m *MockFreeMarketUseCase) GetByID(arg0 context.Context, arg1 int64) (*domain.FreeMarket, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetByID", arg0, arg1)
+	ret0, _ := ret[0].(*domain.FreeMarket)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetByID indicates an expected call of GetByID.
+func (mr *MockFreeMarketUseCaseMockRecorder) GetByID(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockFreeMarketUseCase)(nil).GetByID), arg0, arg1)
+}
+
+// Update mocks base method.
+func (m *MockFreeMarketUseCase) Update(arg0 context.Context, arg1 int64, arg2 *dto.FreeMarketRequestBody) (*domain.FreeMarket, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Update", arg0, arg1, arg2)
+	ret0, _ := ret[0].(*domain.FreeMarket)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Update indicates an expected call of Update.
+func (mr *MockFreeMarketUseCaseMockRecorder) Update(arg0, arg1, arg2 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockFreeMarketUseCase)(nil).Update), arg0, arg1, arg2)
+}
+
 // MockFreeMarketRepository is a mock of FreeMarketRepository interface.
 type MockFreeMarketRepository struct {
 	ctrl     *gomock.Controller

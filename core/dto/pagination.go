@@ -23,7 +23,7 @@ type PaginationResponseBody struct {
 }
 
 // FromValuePaginationRequestParams converts query string params to a PaginationRequestParms struct
-func FromValuePaginationRequestParams(request *http.Request) (*PaginationRequestParams, error) {
+func FromValuePaginationRequestParams(request *http.Request) *PaginationRequestParams {
 	page, _ := strconv.Atoi(request.FormValue("page"))
 	itemsPerPage, _ := strconv.Atoi(request.FormValue("itemsPerPage"))
 	status, _ := strconv.Atoi(request.FormValue("status"))
@@ -37,5 +37,5 @@ func FromValuePaginationRequestParams(request *http.Request) (*PaginationRequest
 		Status:       status,
 	}
 
-	return &paginationRequestParams, nil
+	return &paginationRequestParams
 }

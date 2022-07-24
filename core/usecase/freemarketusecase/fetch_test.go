@@ -38,12 +38,12 @@ func TestFetch(t *testing.T) {
 		ctx := context.Background()
 		mockCtrl := gomock.NewController(t)
 		defer mockCtrl.Finish()
-		mockProductRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
-		mockProductRepository.EXPECT().
+		mockFreeMarketRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
+		mockFreeMarketRepository.EXPECT().
 			Fetch(ctx, &requestParams).
 			Return(&freeMarketResponsePaginated, nil)
 
-		sut := freemarketusecase.New(mockProductRepository)
+		sut := freemarketusecase.New(mockFreeMarketRepository)
 		freeMarketsPaginated, err := sut.Fetch(ctx, &requestParams)
 
 		assert.Nil(t, err)
@@ -87,12 +87,12 @@ func TestFetch(t *testing.T) {
 		ctx := context.Background()
 		mockCtrl := gomock.NewController(t)
 		defer mockCtrl.Finish()
-		mockProductRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
-		mockProductRepository.EXPECT().
+		mockFreeMarketRepository := mocks.NewMockFreeMarketRepository(mockCtrl)
+		mockFreeMarketRepository.EXPECT().
 			Fetch(ctx, &requestParams).
 			Return(nil, fmt.Errorf("ANY ERROR"))
 
-		sut := freemarketusecase.New(mockProductRepository)
+		sut := freemarketusecase.New(mockFreeMarketRepository)
 		freeMarket, err := sut.Fetch(ctx, &requestParams)
 
 		assert.NotNil(t, err)

@@ -22,9 +22,8 @@ func TestFromValuePaginationRequestParams(t *testing.T) {
 			queryStringParams.Add("search", "")
 			fakeRequest.URL.RawQuery = queryStringParams.Encode()
 
-			paginationRequest, err := dto.FromValuePaginationRequestParams(fakeRequest)
+			paginationRequest := dto.FromValuePaginationRequestParams(fakeRequest)
 
-			assert.Nil(t, err)
 			assert.Equal(t, paginationRequest.Page, 1)
 			assert.Equal(t, paginationRequest.ItemsPerPage, 10)
 			assert.Equal(t, paginationRequest.Sort, []string{""})
