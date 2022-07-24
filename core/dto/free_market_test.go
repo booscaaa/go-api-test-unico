@@ -2,7 +2,6 @@ package dto_test
 
 import (
 	"encoding/json"
-	"log"
 	"strings"
 	"testing"
 
@@ -15,7 +14,7 @@ import (
 
 func TestFromJSONFreeMarketRequestBody(t *testing.T) {
 	t.Run(
-		"should convert the json requesy payload to a struct FreeMarketRequestBody",
+		"should convert the json request payload to a struct FreeMarketRequestBody",
 		func(t *testing.T) {
 			fakeItem := dto.FreeMarketRequestBody{}
 			faker.FakeData(&fakeItem)
@@ -25,7 +24,7 @@ func TestFromJSONFreeMarketRequestBody(t *testing.T) {
 			json, err := json.Marshal(fakeItem)
 			assert.Nil(t, err)
 			validate := validator.New()
-			log.Println(string(json))
+
 			freeMarketRequest, err := dto.FromJSONFreeMarketRequestBody(
 				strings.NewReader(string(json)),
 				validate,

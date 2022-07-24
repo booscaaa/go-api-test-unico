@@ -1,6 +1,8 @@
 package domain
 
 import (
+	"context"
+
 	"github.com/booscaaa/go-api-test-unico/core/dto"
 	"github.com/gin-gonic/gin"
 )
@@ -21,7 +23,7 @@ type FreeMarket struct {
 	Register          string  `json:"register"          db:"register"`
 	Address           string  `json:"address"           db:"address"`
 	AddressNumber     *string `json:"addressNumber"     db:"address_number"`
-	District          string  `json:"district"          db:"disctrict"`
+	District          string  `json:"district"          db:"district"`
 	Reference         *string `json:"reference"         db:"reference"`
 }
 
@@ -40,14 +42,14 @@ type FreeMarketUseCase interface {
 	Update(int, *dto.FreeMarketRequestBody) (*FreeMarket, error)
 	Delete(int) (*FreeMarket, error)
 	GetByID(int) (*FreeMarket, error)
-	Fetch(*dto.PaginationRequestParms) (*dto.PaginationResponseBody, error)
+	Fetch(*dto.PaginationRequestParams) (*dto.PaginationResponseBody, error)
 }
 
 // FreeMarketRepository is a contract of database connection adapter layer
 type FreeMarketRepository interface {
-	Create(*dto.FreeMarketRequestBody) (*FreeMarket, error)
-	Update(int, *dto.FreeMarketRequestBody) (*FreeMarket, error)
-	Delete(int) (*FreeMarket, error)
-	GetByID(int) (*FreeMarket, error)
-	Fetch(*dto.PaginationRequestParms) (*dto.PaginationResponseBody, error)
+	Create(context.Context, *dto.FreeMarketRequestBody) (*FreeMarket, error)
+	Update(context.Context, int64, *dto.FreeMarketRequestBody) (*FreeMarket, error)
+	Delete(context.Context, int64) (*FreeMarket, error)
+	GetByID(context.Context, int64) (*FreeMarket, error)
+	Fetch(context.Context, *dto.PaginationRequestParams) (*dto.PaginationResponseBody, error)
 }

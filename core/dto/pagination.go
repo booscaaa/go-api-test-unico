@@ -7,7 +7,7 @@ import (
 )
 
 // PaginationRequestParms is an representation query string params to filter and paginate data
-type PaginationRequestParms struct {
+type PaginationRequestParams struct {
 	Search       string   `json:"search"`
 	Descending   []string `json:"descending"`
 	Page         int      `json:"page"`
@@ -23,12 +23,12 @@ type PaginationResponseBody struct {
 }
 
 // FromValuePaginationRequestParams converts query string params to a PaginationRequestParms struct
-func FromValuePaginationRequestParams(request *http.Request) (*PaginationRequestParms, error) {
+func FromValuePaginationRequestParams(request *http.Request) (*PaginationRequestParams, error) {
 	page, _ := strconv.Atoi(request.FormValue("page"))
 	itemsPerPage, _ := strconv.Atoi(request.FormValue("itemsPerPage"))
 	status, _ := strconv.Atoi(request.FormValue("status"))
 
-	paginationRequestParms := PaginationRequestParms{
+	paginationRequestParams := PaginationRequestParams{
 		Search:       request.FormValue("search"),
 		Descending:   strings.Split(request.FormValue("descending"), ","),
 		Sort:         strings.Split(request.FormValue("sort"), ","),
@@ -37,5 +37,5 @@ func FromValuePaginationRequestParams(request *http.Request) (*PaginationRequest
 		Status:       status,
 	}
 
-	return &paginationRequestParms, nil
+	return &paginationRequestParams, nil
 }
