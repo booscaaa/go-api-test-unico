@@ -15,6 +15,7 @@ import (
 	"github.com/bxcodec/faker/v3"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/mock/gomock"
+	"go.uber.org/zap/zaptest"
 )
 
 func setupFetch(t *testing.T) (domain.FreeMarket, *gomock.Controller) {
@@ -52,6 +53,7 @@ func TestFetch(t *testing.T) {
 
 		ctx := context.Background()
 		validator := util.NewValidator()
+		logger := zaptest.NewLogger(t)
 		mockFreeMarketUseCase := mocks.NewMockFreeMarketUseCase(mock)
 		mockFreeMarketUseCase.EXPECT().
 			Fetch(ctx, requestParams).
@@ -60,7 +62,7 @@ func TestFetch(t *testing.T) {
 				Total: 1,
 			}, nil)
 
-		sut := freemarketservice.New(mockFreeMarketUseCase, *validator)
+		sut := freemarketservice.New(mockFreeMarketUseCase, *validator, logger)
 
 		sut.Fetch(c)
 
@@ -95,12 +97,13 @@ func TestFetch(t *testing.T) {
 
 		ctx := context.Background()
 		validator := util.NewValidator()
+		logger := zaptest.NewLogger(t)
 		mockFreeMarketUseCase := mocks.NewMockFreeMarketUseCase(mock)
 		mockFreeMarketUseCase.EXPECT().
 			Fetch(ctx, requestParams).
 			Return(nil, fmt.Errorf("ANY ERROR"))
 
-		sut := freemarketservice.New(mockFreeMarketUseCase, *validator)
+		sut := freemarketservice.New(mockFreeMarketUseCase, *validator, logger)
 
 		sut.Fetch(c)
 
