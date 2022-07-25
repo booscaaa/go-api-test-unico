@@ -38,6 +38,10 @@ func setupUpdate() ([]string, dto.FreeMarketRequestBody, domain.FreeMarket, sqlm
 	fakeFreeMarketResponse := domain.FreeMarket{}
 	faker.FakeData(&fakeFreeMarketRequest)
 	faker.FakeData(&fakeFreeMarketResponse)
+	fakeFreeMarketRequest.AddressNumber = nil
+	fakeFreeMarketRequest.Reference = nil
+	fakeFreeMarketResponse.AddressNumber = nil
+	fakeFreeMarketResponse.Reference = nil
 
 	mockDatabase, mock, _ := sqlmock.New()
 	sqlxDB := sqlx.NewDb(mockDatabase, "sqlmock")

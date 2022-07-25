@@ -20,6 +20,10 @@ func TestGetByID(t *testing.T) {
 		freeMarketResponse := domain.FreeMarket{}
 		faker.FakeData(&fakeFreeMarketRequest)
 		faker.FakeData(&freeMarketResponse)
+		fakeFreeMarketRequest.AddressNumber = nil
+		fakeFreeMarketRequest.Reference = nil
+		freeMarketResponse.AddressNumber = nil
+		freeMarketResponse.Reference = nil
 
 		ctx := context.Background()
 		mockCtrl := gomock.NewController(t)
@@ -57,6 +61,10 @@ func TestGetByID(t *testing.T) {
 		freeMarketResponse := domain.FreeMarket{}
 		faker.FakeData(&fakeFreeMarketRequest)
 		faker.FakeData(&freeMarketResponse)
+		fakeFreeMarketRequest.AddressNumber = nil
+		fakeFreeMarketRequest.Reference = nil
+		freeMarketResponse.AddressNumber = nil
+		freeMarketResponse.Reference = nil
 
 		ctx := context.Background()
 		mockCtrl := gomock.NewController(t)
