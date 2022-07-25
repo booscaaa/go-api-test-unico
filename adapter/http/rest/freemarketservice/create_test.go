@@ -17,6 +17,7 @@ import (
 	"github.com/bxcodec/faker/v3"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/mock/gomock"
+	"go.uber.org/zap/zaptest"
 )
 
 func setupCreate(t *testing.T) (dto.FreeMarketRequestBody, domain.FreeMarket, *gomock.Controller) {
@@ -37,12 +38,13 @@ func TestCreate(t *testing.T) {
 
 		ctx := context.Background()
 		validator := util.NewValidator()
+		logger := zaptest.NewLogger(t)
 		mockFreeMarketUseCase := mocks.NewMockFreeMarketUseCase(mock)
 		mockFreeMarketUseCase.EXPECT().
 			Create(ctx, &fakeFreeMarketRequest).
 			Return(&fakeFreeMarket, nil)
 
-		sut := freemarketservice.New(mockFreeMarketUseCase, *validator)
+		sut := freemarketservice.New(mockFreeMarketUseCase, *validator, logger)
 
 		payload, _ := json.Marshal(fakeFreeMarketRequest)
 		w := httptest.NewRecorder()
@@ -66,9 +68,10 @@ func TestCreate(t *testing.T) {
 		defer mock.Finish()
 
 		validator := util.NewValidator()
+		logger := zaptest.NewLogger(t)
 		mockFreeMarketUseCase := mocks.NewMockFreeMarketUseCase(mock)
 
-		sut := freemarketservice.New(mockFreeMarketUseCase, *validator)
+		sut := freemarketservice.New(mockFreeMarketUseCase, *validator, logger)
 
 		w := httptest.NewRecorder()
 		r := httptest.NewRequest(http.MethodPost, "/free-market", strings.NewReader("{"))
@@ -91,9 +94,10 @@ func TestCreate(t *testing.T) {
 		defer mock.Finish()
 
 		validator := util.NewValidator()
+		logger := zaptest.NewLogger(t)
 		mockFreeMarketUseCase := mocks.NewMockFreeMarketUseCase(mock)
 
-		sut := freemarketservice.New(mockFreeMarketUseCase, *validator)
+		sut := freemarketservice.New(mockFreeMarketUseCase, *validator, logger)
 
 		w := httptest.NewRecorder()
 		r := httptest.NewRequest(http.MethodPost, "/free-market", strings.NewReader("{}"))
@@ -117,12 +121,14 @@ func TestCreate(t *testing.T) {
 
 		ctx := context.Background()
 		validator := util.NewValidator()
+		logger := zaptest.NewLogger(t)
+
 		mockFreeMarketUseCase := mocks.NewMockFreeMarketUseCase(mock)
 		mockFreeMarketUseCase.EXPECT().
 			Create(ctx, &fakeFreeMarketRequest).
 			Return(nil, fmt.Errorf("ANY ERROR"))
 
-		sut := freemarketservice.New(mockFreeMarketUseCase, *validator)
+		sut := freemarketservice.New(mockFreeMarketUseCase, *validator, logger)
 
 		payload, _ := json.Marshal(fakeFreeMarketRequest)
 		w := httptest.NewRecorder()

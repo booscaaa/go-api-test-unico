@@ -15,6 +15,7 @@ import (
 	"github.com/bxcodec/faker/v3"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/mock/gomock"
+	"go.uber.org/zap/zaptest"
 )
 
 func setupGetByID(t *testing.T) (domain.FreeMarket, *gomock.Controller) {
@@ -33,12 +34,13 @@ func TestGetByID(t *testing.T) {
 
 		ctx := context.Background()
 		validator := util.NewValidator()
+		logger := zaptest.NewLogger(t)
 		mockFreeMarketUseCase := mocks.NewMockFreeMarketUseCase(mock)
 		mockFreeMarketUseCase.EXPECT().
 			GetByID(ctx, int64(1)).
 			Return(&fakeFreeMarket, nil)
 
-		sut := freemarketservice.New(mockFreeMarketUseCase, *validator)
+		sut := freemarketservice.New(mockFreeMarketUseCase, *validator, logger)
 
 		w := httptest.NewRecorder()
 		r := httptest.NewRequest(http.MethodPost, "/free-market/1", nil)
@@ -63,12 +65,13 @@ func TestGetByID(t *testing.T) {
 
 		ctx := context.Background()
 		validator := util.NewValidator()
+		logger := zaptest.NewLogger(t)
 		mockFreeMarketUseCase := mocks.NewMockFreeMarketUseCase(mock)
 		mockFreeMarketUseCase.EXPECT().
 			GetByID(ctx, int64(1)).
 			Return(nil, fmt.Errorf("ANY ERROR"))
 
-		sut := freemarketservice.New(mockFreeMarketUseCase, *validator)
+		sut := freemarketservice.New(mockFreeMarketUseCase, *validator, logger)
 
 		w := httptest.NewRecorder()
 		r := httptest.NewRequest(http.MethodPost, "/free-market/1", nil)
@@ -92,9 +95,10 @@ func TestGetByID(t *testing.T) {
 		defer mock.Finish()
 
 		validator := util.NewValidator()
+		logger := zaptest.NewLogger(t)
 		mockFreeMarketUseCase := mocks.NewMockFreeMarketUseCase(mock)
 
-		sut := freemarketservice.New(mockFreeMarketUseCase, *validator)
+		sut := freemarketservice.New(mockFreeMarketUseCase, *validator, logger)
 
 		w := httptest.NewRecorder()
 		r := httptest.NewRequest(http.MethodPost, "/free-market", strings.NewReader("{"))

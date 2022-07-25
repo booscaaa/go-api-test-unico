@@ -5,6 +5,7 @@ import (
 
 	"github.com/booscaaa/go-api-test-unico/core/dto"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 // Fetch goDoc
@@ -26,6 +27,7 @@ func (service service) Fetch(c *gin.Context) {
 	freeMarket, err := service.usecase.Fetch(c.Request.Context(), paginationRequest)
 
 	if err != nil {
+		service.logger.Error("Erro on fetch free markets", zap.Error(err))
 		c.JSON(http.StatusInternalServerError, err)
 		return
 	}

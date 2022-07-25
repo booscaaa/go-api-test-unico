@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 // GetByID goDoc
@@ -20,6 +21,7 @@ func (service service) GetByID(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 
 	if err != nil {
+		service.logger.Error("Param ID with problem", zap.Error(err))
 		c.JSON(http.StatusInternalServerError, err)
 		return
 	}
@@ -27,6 +29,7 @@ func (service service) GetByID(c *gin.Context) {
 	freeMarket, err := service.usecase.GetByID(c.Request.Context(), int64(id))
 
 	if err != nil {
+		service.logger.Error("Erro on get free market by id", zap.Error(err))
 		c.JSON(http.StatusInternalServerError, err)
 		return
 	}

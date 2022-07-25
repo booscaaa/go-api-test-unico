@@ -9,6 +9,7 @@ import (
 
 	"github.com/booscaaa/go-api-test-unico/adapter/http/rest"
 	"github.com/booscaaa/go-api-test-unico/adapter/postgres"
+	"github.com/booscaaa/go-api-test-unico/util"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -18,11 +19,12 @@ var serveCmd = &cobra.Command{
 	Use:   "serve",
 	Short: "Initialize the REST api",
 	Run: func(cmd *cobra.Command, args []string) {
+		logger := util.InitializeLogger()
 		ctx := context.Background()
 		postgres.RunMigrations()
 		database := postgres.GetConnection(ctx)
 		configHTTPServerPort := viper.GetString("server.http.port")
-		rest.InitRest(configHTTPServerPort, database)
+		rest.InitRest(configHTTPServerPort, database, logger)
 	},
 }
 
