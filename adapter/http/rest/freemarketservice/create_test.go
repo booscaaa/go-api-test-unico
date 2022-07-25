@@ -25,10 +25,6 @@ func setupCreate(t *testing.T) (dto.FreeMarketRequestBody, domain.FreeMarket, *g
 	fakeFreeMarket := domain.FreeMarket{}
 	faker.FakeData(&fakeFreeMarketRequest)
 	faker.FakeData(&fakeFreeMarket)
-	fakeFreeMarketRequest.AddressNumber = nil
-	fakeFreeMarketRequest.Reference = nil
-	fakeFreeMarket.AddressNumber = nil
-	fakeFreeMarket.Reference = nil
 
 	mockCtrl := gomock.NewController(t)
 
