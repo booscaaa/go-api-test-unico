@@ -79,6 +79,11 @@ $ docker exec api go run ./adapter/cli/main.go importer
 
 <br><br>
 
+## Arquivos de LOGS
+- Os logs são gerados e armazenados por data na pasta `./logs` na raiz do projeto. A pasta é um mapeamento para o diretório /var/log dentro do container da API. 
+
+<br><br>
+
 ## Automações
 - Testes rodam em qualquer push ou pull request: https://github.com/booscaaa/go-api-test-unico/actions/workflows/tests.yaml
 - Deploy é realizado para produção no Heroku ao criar uma tag com prefixo v*: https://github.com/booscaaa/go-api-test-unico/actions/workflows/heroku-deploy.yaml
