@@ -52,17 +52,30 @@ $ cd go-api-test-unico
 $ docker-compose up --build -d
 ```
 
+- ENDPOINT_API: http://localhost:3000
+- ENDPOINT_API_DOCS: http://localhost:3000/swagger/index.html
+- ENDPOINT_PGADMIN: http://localhost:5050
+
+<br>
+
 ### Importando os dados do CSV do teste
 
 ```bash
 $ docker exec api go run ./adapter/cli/main.go importer
 ```
 
-- ENDPOINT_API: http://localhost:3000
-- ENDPOINT_API_DOCS: http://localhost:3000/swagger/index.html
-- ENDPOINT_PGADMIN: http://localhost:5050
+<br>
 
-- MÉTODOS ABAIXO:
+### Logs da api em desenvolvimento
+
+```bash
+$ docker logs api -f
+```
+
+<br>
+
+## Requests
+- Para testar os endpoints da API basta clicar no botão abaixo e executar as request no insomnia. Ou em algum outro software seguindo a documentação: https://api-unico-test.herokuapp.com/swagger/index.html 
 
   <a href="https://insomnia.rest/run?label=API%20UNICO%20V1&uri=https://api-unico-test.herokuapp.com/swagger/doc.json"><img alt="Swagger docs" src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  
 
