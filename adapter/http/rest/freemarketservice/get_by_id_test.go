@@ -21,6 +21,8 @@ import (
 func setupGetByID(t *testing.T) (domain.FreeMarket, *gomock.Controller) {
 	fakeFreeMarket := domain.FreeMarket{}
 	faker.FakeData(&fakeFreeMarket)
+	fakeFreeMarket.AddressNumber = nil
+	fakeFreeMarket.Reference = nil
 
 	mockCtrl := gomock.NewController(t)
 
