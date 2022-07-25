@@ -12,9 +12,11 @@
   <br>
   <br>
   <h1 align="center">TESTE DE API</h1>
+  <h4 align="center">LINKS PARA AS INFORMAÇÕES SOBRE RELEASE, TESTES, COVERAGE E SWAGGER ABAIXO</h5>
+  <br>
   <p align="center">
     <a href="https://github.com/booscaaa/go-api-test-unico/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/booscaaa/go-api-test-unico.svg?style=for-the-badge"></a>
-    <a href="https://github.com/booscaaa/go-api-test-unico/actions/workflows/test.yaml"><img alt="Test status" src="https://img.shields.io/github/workflow/status/booscaaa/go-api-test-unico/Tests?label=TESTS&style=for-the-badge"></a>
+    <a href="https://github.com/booscaaa/go-api-test-unico/actions/workflows/tests.yaml"><img alt="Test status" src="https://img.shields.io/github/workflow/status/booscaaa/go-api-test-unico/Tests?label=TESTS&style=for-the-badge"></a>
     <a href="https://codecov.io/gh/booscaaa/go-api-test-unico"><img alt="Coverage" src="https://img.shields.io/codecov/c/github/booscaaa/go-api-test-unico/master.svg?style=for-the-badge"></a>
     <a href="https://api-unico-test.herokuapp.com/swagger/index.html"><img alt="Swagger docs" src="https://img.shields.io/badge/api docs-swagger-purple?style=for-the-badge"></a>
   </p>
@@ -60,19 +62,29 @@ $ docker exec api go run ./adapter/cli/main.go importer
 - ENDPOINT_API_DOCS: http://localhost:3000/swagger/index.html
 - ENDPOINT_PGADMIN: http://localhost:5050
 
-- METODOS:
+- MÉTODOS ABAIXO:
 
   <a href="https://insomnia.rest/run?label=API%20UNICO%20V1&uri=https://api-unico-test.herokuapp.com/swagger/doc.json"><img alt="Swagger docs" src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  
 
 <br><br>
 
-## Credênciais para desenvolvimento
+## Credênciais para desenvolvimento e conexão com o banco de dados pelo:
 ### PGADMIN
 - login: admin@admin.com
 - senha: admin
+- host: postgres
+- usuario do banco: postgres
+- senha do banco: postgres
+- porta do banco: 5432
 
 <br><br>
 
+## Automações
+- Testes rodam em qualquer push ou pull request: https://github.com/booscaaa/go-api-test-unico/actions/workflows/tests.yaml
+- Deploy é realizado para produção no Heroku ao criar uma tag com prefixo v*: https://github.com/booscaaa/go-api-test-unico/actions/workflows/heroku-deploy.yaml
+- O github actions envia os dados para o Codecov gerando relatórios de coverage: https://app.codecov.io/gh/booscaaa/go-api-test-unico
+
+<br><br>
 
 ## Bibliotecas
 
