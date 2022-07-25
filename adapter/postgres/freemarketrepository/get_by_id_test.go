@@ -35,6 +35,8 @@ func setupGetByID() ([]string, domain.FreeMarket, sqlmock.Sqlmock, *sqlx.DB) {
 	}
 	fakeFreeMarketResponse := domain.FreeMarket{}
 	faker.FakeData(&fakeFreeMarketResponse)
+	fakeFreeMarketResponse.AddressNumber = nil
+	fakeFreeMarketResponse.Reference = nil
 
 	mockDatabase, mock, _ := sqlmock.New()
 	sqlxDB := sqlx.NewDb(mockDatabase, "sqlmock")
