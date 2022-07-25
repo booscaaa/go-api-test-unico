@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"context"
+	"os"
 
 	"github.com/booscaaa/go-api-test-unico/adapter/http/rest"
 	"github.com/booscaaa/go-api-test-unico/adapter/postgres"
@@ -24,6 +25,10 @@ var serveCmd = &cobra.Command{
 		postgres.RunMigrations()
 		database := postgres.GetConnection(ctx)
 		configHTTPServerPort := viper.GetString("server.http.port")
+
+		if configHTTPServerPort == "" {
+			configHTTPServerPort = os.Getenv("PORT") // CONFIG TO RUN ON HEROKU CONTAINER
+		}
 		rest.InitRest(configHTTPServerPort, database, logger)
 	},
 }
