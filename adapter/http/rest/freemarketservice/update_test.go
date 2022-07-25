@@ -26,10 +26,6 @@ func TestUpdate(t *testing.T) {
 		fakeFreeMarket := domain.FreeMarket{}
 		faker.FakeData(&fakeFreeMarketRequest)
 		faker.FakeData(&fakeFreeMarket)
-		fakeFreeMarketRequest.AddressNumber = nil
-		fakeFreeMarketRequest.Reference = nil
-		fakeFreeMarket.AddressNumber = nil
-		fakeFreeMarket.Reference = nil
 
 		mock := gomock.NewController(t)
 		defer mock.Finish()
@@ -67,10 +63,6 @@ func TestUpdate(t *testing.T) {
 		fakeFreeMarket := domain.FreeMarket{}
 		faker.FakeData(&fakeFreeMarketRequest)
 		faker.FakeData(&fakeFreeMarket)
-		fakeFreeMarketRequest.AddressNumber = nil
-		fakeFreeMarketRequest.Reference = nil
-		fakeFreeMarket.AddressNumber = nil
-		fakeFreeMarket.Reference = nil
 
 		mock := gomock.NewController(t)
 		defer mock.Finish()
@@ -103,10 +95,6 @@ func TestUpdate(t *testing.T) {
 		fakeFreeMarket := domain.FreeMarket{}
 		faker.FakeData(&fakeFreeMarketRequest)
 		faker.FakeData(&fakeFreeMarket)
-		fakeFreeMarketRequest.AddressNumber = nil
-		fakeFreeMarketRequest.Reference = nil
-		fakeFreeMarket.AddressNumber = nil
-		fakeFreeMarket.Reference = nil
 
 		mock := gomock.NewController(t)
 		defer mock.Finish()
@@ -139,10 +127,6 @@ func TestUpdate(t *testing.T) {
 		fakeFreeMarket := domain.FreeMarket{}
 		faker.FakeData(&fakeFreeMarketRequest)
 		faker.FakeData(&fakeFreeMarket)
-		fakeFreeMarketRequest.AddressNumber = nil
-		fakeFreeMarketRequest.Reference = nil
-		fakeFreeMarket.AddressNumber = nil
-		fakeFreeMarket.Reference = nil
 
 		mock := gomock.NewController(t)
 		defer mock.Finish()
@@ -180,10 +164,6 @@ func TestUpdate(t *testing.T) {
 		fakeFreeMarket := domain.FreeMarket{}
 		faker.FakeData(&fakeFreeMarketRequest)
 		faker.FakeData(&fakeFreeMarket)
-		fakeFreeMarketRequest.AddressNumber = nil
-		fakeFreeMarketRequest.Reference = nil
-		fakeFreeMarket.AddressNumber = nil
-		fakeFreeMarket.Reference = nil
 
 		mock := gomock.NewController(t)
 		defer mock.Finish()
