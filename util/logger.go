@@ -1,7 +1,6 @@
 package util
 
 import (
-	"encoding/json"
 	"time"
 
 	"go.uber.org/zap"
@@ -29,22 +28,14 @@ func InitializeLogger() *zap.Logger {
 		panic(err)
 	}
 
-	encoderConfig := map[string]string{
-		"levelEncoder": "capital",
-		"timeKey":      "date",
-		"timeEncoder":  "iso8601",
-	}
-	data, _ := json.Marshal(encoderConfig)
-	var encCfg zapcore.EncoderConfig
-	if err := json.Unmarshal(data, &encCfg); err != nil {
-		panic(err)
-	}
+	config := zap.NewProductionEncoderConfig()
+	config.EncodeTime = zapcore.ISO8601TimeEncoder
 
 	wInfo := zapcore.AddSync(rotatorInfo)
 	wError := zapcore.AddSync(rotatorError)
 	core := zapcore.NewTee(
-		zapcore.NewCore(zapcore.NewJSONEncoder(encCfg), wInfo, zapcore.InfoLevel),
-		zapcore.NewCore(zapcore.NewJSONEncoder(encCfg), wError, zapcore.ErrorLevel),
+		zapcore.NewCore(zapcore.NewJSONEncoder(config), wInfo, zapcore.InfoLevel),
+		zapcore.NewCore(zapcore.NewJSONEncoder(config), wError, zapcore.ErrorLevel),
 	)
 	return zap.New(core, zap.AddCaller(), zap.AddStacktrace(zapcore.ErrorLevel))
 }
