@@ -36,6 +36,8 @@ func setupFetch() ([]string, dto.PaginationRequestParams, domain.FreeMarket, sql
 	}
 	fakeFreeMarketResponse := domain.FreeMarket{}
 	faker.FakeData(&fakeFreeMarketResponse)
+	fakeFreeMarketResponse.AddressNumber = nil
+	fakeFreeMarketResponse.Reference = nil
 	requestParams := dto.PaginationRequestParams{
 		Search:       "",
 		Descending:   []string{},
