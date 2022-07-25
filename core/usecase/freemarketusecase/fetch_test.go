@@ -20,6 +20,10 @@ func TestFetch(t *testing.T) {
 		freeMarketResponse := domain.FreeMarket{}
 		faker.FakeData(&fakeFreeMarketRequest)
 		faker.FakeData(&freeMarketResponse)
+		fakeFreeMarketRequest.AddressNumber = nil
+		fakeFreeMarketRequest.Reference = nil
+		freeMarketResponse.AddressNumber = nil
+		freeMarketResponse.Reference = nil
 
 		requestParams := dto.PaginationRequestParams{
 			Search:       "",
@@ -74,6 +78,10 @@ func TestFetch(t *testing.T) {
 		freeMarketResponse := domain.FreeMarket{}
 		faker.FakeData(&fakeFreeMarketRequest)
 		faker.FakeData(&freeMarketResponse)
+		fakeFreeMarketRequest.AddressNumber = nil
+		fakeFreeMarketRequest.Reference = nil
+		freeMarketResponse.AddressNumber = nil
+		freeMarketResponse.Reference = nil
 
 		requestParams := dto.PaginationRequestParams{
 			Search:       "",
