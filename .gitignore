@@ -1,0 +1,6 @@
+go.sum
+config.json
+database/postgres
+dev
+tests/
+logs/

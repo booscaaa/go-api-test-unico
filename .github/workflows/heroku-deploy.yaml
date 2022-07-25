@@ -1,0 +1,33 @@
+name: Deploy API to Production
+
+on:
+  push:
+    branches:
+      - "!*"
+    tags:
+      - "v*"
+
+jobs:
+  deploy-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Config file access
+        run: |
+          cp config.example.json config.json
+          sed -i -e 's/$BCRYPT_HASH/'${{ secrets.BCRYPT_HASH }}'/g' config.json
+          sed -i -e 's/$DB_PORT/'${{ secrets.DB_PORT }}'/g' config.json
+          sed -i -e 's/$DB_USER/'${{ secrets.DB_USER }}'/g' config.json
+          sed -i -e 's/$DB_PASS/'${{ secrets.DB_PASS }}'/g' config.json
+          sed -i -e 's/$DB_NAME/'${{ secrets.DB_NAME }}'/g' config.json
+          sed -i -e 's/$DB_HOST/'${{ secrets.DB_HOST }}'/g' config.json
+          sed -i -e 's/$SERVER_PORT/'${{ secrets.SERVER_PORT }}'/g' config.json
+          cat config.json
+      
+      - uses: akhileshns/heroku-deploy@v3.10.9
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "api-unico-test"
+          heroku_email: "boscardinvinicius@gmail.com"
+          usedocker: true
