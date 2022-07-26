@@ -1,13 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "UNICO API",
-        "contact": {
-            "name": "Vinícius Boscardin",
-            "email": "boscardinvinicius@gmail.com"
-        }
+        "contact": {}
     },
-    "basePath": "/",
     "paths": {
         "/free-market": {
             "get": {
@@ -93,6 +88,12 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/domain.FreeMarket"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/util.RequestError"
                         }
                     }
                 }
@@ -278,61 +279,79 @@
             "properties": {
                 "address": {
                     "type": "string",
-                    "maxLength": 34
+                    "maxLength": 34,
+                    "example": "RUA MARAGOJIPE"
                 },
                 "addressNumber": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 5,
+                    "example": "S/N"
                 },
                 "areaP": {
                     "type": "string",
-                    "maxLength": 13
+                    "maxLength": 13,
+                    "example": "3550308005040"
                 },
                 "district": {
                     "type": "string",
-                    "maxLength": 20
+                    "maxLength": 20,
+                    "example": "VL FORMOSA"
                 },
                 "latitude": {
-                    "type": "number"
+                    "type": "number",
+                    "example": -28.460924
                 },
                 "longitude": {
-                    "type": "number"
+                    "type": "number",
+                    "example": -52.210348
                 },
                 "marketName": {
                     "type": "string",
-                    "maxLength": 30
+                    "maxLength": 30,
+                    "example": "VILA FORMOSA"
                 },
                 "reference": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 34,
+                    "example": "TV RUA PRETORIA"
                 },
                 "region": {
                     "type": "string",
-                    "maxLength": 18
+                    "maxLength": 18,
+                    "example": "VILA FORMOSA"
                 },
                 "regionCode": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 87
                 },
                 "regionEight": {
                     "type": "string",
-                    "maxLength": 7
+                    "maxLength": 7,
+                    "example": "Leste 1"
                 },
                 "regionFive": {
                     "type": "string",
-                    "maxLength": 6
+                    "maxLength": 6,
+                    "example": "Leste"
                 },
                 "register": {
                     "type": "string",
-                    "maxLength": 6
+                    "maxLength": 6,
+                    "example": "4041-0"
                 },
                 "setCens": {
                     "type": "string",
-                    "maxLength": 15
+                    "maxLength": 15,
+                    "example": "355030885000091"
                 },
                 "subprefecture": {
                     "type": "string",
-                    "maxLength": 25
+                    "maxLength": 25,
+                    "example": "ARICANDUVA-FORMOSA-CARRAO"
                 },
                 "subprefectureCode": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 26
                 }
             }
         },
@@ -342,6 +361,28 @@
                 "items": {},
                 "total": {
                     "type": "integer"
+                }
+            }
+        },
+        "util.Field": {
+            "type": "object",
+            "properties": {
+                "field": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "util.RequestError": {
+            "type": "object",
+            "properties": {
+                "fields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/util.Field"
+                    }
                 }
             }
         }

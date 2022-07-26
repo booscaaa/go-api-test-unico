@@ -17,6 +17,7 @@ import (
 // @Produce  json
 // @Param freeMarket body dto.FreeMarketRequestBody true "freeMarket"
 // @Success 200 {object} domain.FreeMarket
+// @Failure 422 {object} util.RequestError
 // @Router /free-market [post]
 func (service service) Create(c *gin.Context) {
 	freeMarketRequest, err := dto.FromJSONFreeMarketRequestBody(c.Request.Body, &service.validator)
