@@ -24,6 +24,8 @@ jobs:
           sed -i -e 's/$DB_HOST/'${{ secrets.DB_HOST }}'/g' config.json
           sed -i -e 's/$SERVER_PORT/'${{ secrets.SERVER_PORT }}'/g' config.json
           sed -i -e 's/$SSL_MODE/'${{ secrets.SSL_MODE }}'/g' config.json
+          sed -i -e 's/$SERVER_SCHEME/'${{ secrets.SERVER_SCHEME }}'/g' config.json
+          sed -i -e 's/$SERVER_HOST/'${{ secrets.SERVER_HOST }}'/g' config.json
           cat config.json
       
       - uses: akhileshns/heroku-deploy@v3.10.9
