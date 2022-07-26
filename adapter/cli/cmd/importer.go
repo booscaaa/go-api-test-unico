@@ -86,8 +86,8 @@ var importerCmd = &cobra.Command{
 				log.Println(err)
 				return
 			}
-			log.Println(freeMarket.Latitude)
 		}
+		log.Println("Done!")
 	},
 }
 
