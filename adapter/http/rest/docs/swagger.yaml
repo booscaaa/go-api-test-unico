@@ -1,4 +1,3 @@
-basePath: /
 definitions:
   domain.FreeMarket:
     properties:
@@ -40,46 +39,64 @@ definitions:
   dto.FreeMarketRequestBody:
     properties:
       address:
+        example: RUA MARAGOJIPE
         maxLength: 34
         type: string
       addressNumber:
+        example: S/N
+        maxLength: 5
         type: string
       areaP:
+        example: "3550308005040"
         maxLength: 13
         type: string
       district:
+        example: VL FORMOSA
         maxLength: 20
         type: string
       latitude:
+        example: -28.460924
         type: number
       longitude:
+        example: -52.210348
         type: number
       marketName:
+        example: VILA FORMOSA
         maxLength: 30
         type: string
       reference:
+        example: TV RUA PRETORIA
+        maxLength: 34
         type: string
       region:
+        example: VILA FORMOSA
         maxLength: 18
         type: string
       regionCode:
+        example: 87
         type: integer
       regionEight:
+        example: Leste 1
         maxLength: 7
         type: string
       regionFive:
+        example: Leste
         maxLength: 6
         type: string
       register:
+        example: 4041-0
         maxLength: 6
         type: string
       setCens:
+        example: "355030885000091"
         maxLength: 15
         type: string
       subprefecture:
+        example: ARICANDUVA-FORMOSA-CARRAO
         maxLength: 25
         type: string
       subprefectureCode:
+        example: 26
         type: integer
     required:
     - address
@@ -103,11 +120,22 @@ definitions:
       total:
         type: integer
     type: object
+  util.Field:
+    properties:
+      field:
+        type: string
+      message:
+        type: string
+    type: object
+  util.RequestError:
+    properties:
+      fields:
+        items:
+          $ref: '#/definitions/util.Field'
+        type: array
+    type: object
 info:
-  contact:
-    email: boscardinvinicius@gmail.com
-    name: Vinícius Boscardin
-  title: UNICO API
+  contact: {}
 paths:
   /free-market:
     get:
@@ -165,6 +193,10 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/domain.FreeMarket'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/util.RequestError'
       summary: Create free market
       tags:
       - free-market
