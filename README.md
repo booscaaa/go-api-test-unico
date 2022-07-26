@@ -52,6 +52,14 @@ $ cd go-api-test-unico
 $ docker-compose up --build -d
 ```
 
+<br>
+
+### Logs da api em desenvolvimento
+
+```bash
+$ docker logs api -f
+```
+
 - ENDPOINT_API: http://localhost:3000
 - ENDPOINT_API_DOCS: http://localhost:3000/swagger/index.html
 - ENDPOINT_PGADMIN: http://localhost:5050
@@ -62,14 +70,6 @@ $ docker-compose up --build -d
 
 ```bash
 $ docker exec api go run ./adapter/cli/main.go importer
-```
-
-<br>
-
-### Logs da api em desenvolvimento
-
-```bash
-$ docker logs api -f
 ```
 
 <br>
